@@ -1,6 +1,6 @@
 package com.loushy.apirocketmq.config;
 
-import com.loushy.apirocketmq.exception.RocketMQException;
+import com.loushy.exception.RocketMQException;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.slf4j.Logger;

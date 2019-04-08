@@ -15,5 +15,5 @@ import org.springframework.web.bind.annotation.RequestParam;
 public interface RocketMqService {
 
     @GetMapping("/insertUser")
-    String insertUser(@RequestParam(value = "user")String user);
+    Boolean insertUser(@RequestParam(value = "user")String user);
 }

@@ -1,4 +1,4 @@
-package com.loushy.apirocketmq.exception;
+package com.loushy.exception;
 
 public class RocketMQException extends Exception{
     public RocketMQException() {

@@ -1,7 +1,7 @@
-package com.loushy.apirocketmq.config;
+package com.loushy.servicerocketmq.config;
 
-import com.loushy.apirocketmq.action.MQConsumeMsgListenerProcessor;
 import com.loushy.exception.RocketMQException;
+import com.loushy.servicerocketmq.action.MQConsumeMsgListenerProcessor;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.apache.rocketmq.common.consumer.ConsumeFromWhere;

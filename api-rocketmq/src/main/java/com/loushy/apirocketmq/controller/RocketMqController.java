@@ -29,16 +29,21 @@ public class RocketMqController {
     //两个例子对比 Tag-insert 和 Tag-update 的区别
 
     @RequestMapping("/insertUser")
-    public String insertUser(User user) throws MQClientException, RemotingException, MQBrokerException, InterruptedException{ //不同模块中的类相互使用要在pom文件中添加依赖
+    public boolean insertUser(User user) throws MQClientException, RemotingException, MQBrokerException, InterruptedException{ //不同模块中的类相互使用要在pom文件中添加依赖
         LOGGER.info("开始发送注册信息");
         Message message = new Message("Topic","Tag-insert",JSONObject.toJSON(user).toString().getBytes());
         SendResult result = defaultMQProducer.send(message);
         LOGGER.info("消息发送相应信息:"+result.toString());
-        return service.insertUser(JSONObject.toJSON(user).toString());
+        boolean status = service.insertUser(JSONObject.toJSON(user).toString());
+        if (status){
+            Message msg = new Message("Top-service","Tag-insertUser",JSONObject.toJSON(user).toString().getBytes());
+            defaultMQProducer.send(message);
+        }
+        return status;
     }
 
     @RequestMapping("/updateUser")
-    public String updateUser(User user) throws MQClientException, RemotingException, MQBrokerException, InterruptedException{
+    public boolean updateUser(User user) throws MQClientException, RemotingException, MQBrokerException, InterruptedException{
         LOGGER.info("开始发修改册信息");
         Message message = new Message("Topic","Tag-update",JSONObject.toJSON(user).toString().getBytes());
         SendResult result = defaultMQProducer.send(message);
